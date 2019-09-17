@@ -1,0 +1,58 @@
+package com.github.narcissujsk.openstackjsk.api.networking.ext;
+
+import java.util.List;
+import java.util.Map;
+import com.github.narcissujsk.openstackjsk.common.RestService;
+import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.model.network.ext.HealthMonitor;
+import com.github.narcissujsk.openstackjsk.model.network.ext.HealthMonitorUpdate;
+/**
+ * Networking (Neutron) Lbaas healthmonitor Extension API
+ * @author liujunpeng
+ *
+ */
+public interface HealthMonitorService extends RestService {
+    /**
+     * List all healthMonitor  that the current tenant has access to
+     *
+     * @return list of all healthMonitor
+     */
+    List<? extends HealthMonitor> list();
+
+    /**
+     * Returns list of healthMonitor filtered by parameters.
+     * 
+     * @param filteringParams map (name, value) of filtering parameters
+     * @return 
+     */
+    List<? extends HealthMonitor> list(Map<String, String> filteringParams);
+
+
+    /**
+     * Get the specified healthMonitor by ID
+     *
+     * @param healthMonitorId the healthMonitor identifier
+     * @return the healthMonitor or null if not found
+     */
+    HealthMonitor get(String healthMonitorId);
+    
+    /**
+     * Delete the specified healthMonitor by ID
+     * @param healthMonitorId the healthMonitor identifier
+     * @return the action response
+     */
+    ActionResponse delete(String healthMonitorId);
+    /**
+     * Create a healthMonitor
+     * @param healthMonitor 
+     * @return HealthMonitor
+     */
+    HealthMonitor create(HealthMonitor healthMonitor);
+    /**
+     * Update a healthMonitor
+     * @param healthMonitorId the healthMonitor identifier
+     * @param healthMonitor HealthMonitorUpdate
+     * @return HealthMonitor
+     */
+    HealthMonitor update(String healthMonitorId, HealthMonitorUpdate healthMonitor);
+}
