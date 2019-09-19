@@ -82,8 +82,9 @@ public interface Server extends ModelEntity {
 			if (value != null)
 			{
 				for (Status s : Status.values()) {
-					if (s.name().equalsIgnoreCase(value))
-						return s;
+					if (s.name().equalsIgnoreCase(value)) {
+                        return s;
+                    }
 				}
 			}
 			return Status.UNRECOGNIZED;
@@ -181,6 +182,8 @@ public interface Server extends ModelEntity {
 	 */
 	String getTenantId();
 
+
+    List<String> getTags();
 	/**
 	 * @return the user id
 	 */

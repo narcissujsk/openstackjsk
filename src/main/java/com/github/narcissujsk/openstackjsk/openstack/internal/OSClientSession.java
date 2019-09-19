@@ -479,7 +479,6 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     }
 
     public static class OSClientSessionV3 extends OSClientSession<OSClientSessionV3, OSClientV3> implements OSClientV3 {
-        org.apache.log4j.Logger logger= org.apache.log4j.Logger.getLogger("OSClientSessionV3");
         Token token;
         
         protected String reqId;
@@ -545,16 +544,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
          */
         @Override
         public String getEndpoint(ServiceType service) {
-            logger.info("servicetype:"+ service.getType()+" "+service.getServiceName());
         	final EndpointURLResolver eUrlResolver = (config != null && config.getEndpointURLResolver() != null) ? config.getEndpointURLResolver() : fallbackEndpointUrlResolver;
             String urlv3 = eUrlResolver.findURLV3(URLResolverParams
                     .create(token, service)
                     .resolver(config != null ? config.getResolver() : null)
                     .perspective(perspective)
                     .region(region));
-            logger.info("urlv3:"+ urlv3);
             String endpoint = addNATIfApplicable(urlv3);
-            logger.info("endpoint:"+ endpoint);
             return endpoint;
         }
 

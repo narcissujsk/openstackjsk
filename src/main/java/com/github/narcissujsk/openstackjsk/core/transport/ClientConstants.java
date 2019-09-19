@@ -25,6 +25,13 @@ public final class ClientConstants {
 
     public static final String  HEADER_X_OpenStack_Ironic_API_Version ="X-OpenStack-Ironic-API-Version";
 
+    public static final String  HEADER_X_OpenStack_Nova_API_Version ="X-Openstack-Nova-Api-Version";
+
+    public static final String  Ironic_API_Version ="1.34";
+
+    public static final String  Nova_API_Version ="2.53";
+
+
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String CONTENT_TYPE_STREAM = "application/stream";
     public static final String CONTENT_TYPE_DIRECTORY = "application/directory";

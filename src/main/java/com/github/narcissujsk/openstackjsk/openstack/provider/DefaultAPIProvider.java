@@ -354,8 +354,6 @@ import com.github.narcissujsk.openstackjsk.openstack.workflow.internal.*;
  * @author Jeremy Unruh
  */
 public class DefaultAPIProvider implements APIProvider {
-    Logger logger = Logger.getLogger("HttpRequest");
-
     private static final Map<Class<?>, Class<?>> bindings = Maps.newHashMap();
     private static final Map<Class<?>, Object> instances = Maps.newConcurrentMap();
 
@@ -567,12 +565,9 @@ public class DefaultAPIProvider implements APIProvider {
     @SuppressWarnings("unchecked")
     @Override
     public <T> T get(Class<T> api) {
-        logger.info(api);
-        logger.info(instances);
         if (instances.containsKey(api)) {
             return (T) instances.get(api);
         }
-
         if (bindings.containsKey(api)) {
             try {
                 T impl = (T) bindings.get(api).newInstance();

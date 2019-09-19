@@ -13,8 +13,6 @@ import com.google.common.base.Function;
  * @author Jeremy Unruh
  */
 public class EndpointURIFromRequestFunction implements Function<HttpRequest<?>, String> {
-
-    Logger logger = Logger.getLogger("EndpointURIFromRequestFunction");
     /**
      * {@inheritDoc}
      */
@@ -27,7 +25,6 @@ public class EndpointURIFromRequestFunction implements Function<HttpRequest<?>, 
     }
     
     private String escape(String uri) {
-        logger.info(" uri: \r\n"+uri);
         return uri.replaceAll(" ", "%20");
     }
 

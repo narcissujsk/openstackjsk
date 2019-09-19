@@ -32,7 +32,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
     private static final Map<Key, String> CACHE = new ConcurrentHashMap<Key, String>();
     private static boolean LEGACY_EP_HANDLING = Boolean.getBoolean(LEGACY_EP_RESOLVING_PROP);
     private String publicHostIP;
-    org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger("RequestBuilder");
+
     @Override
     public String findURLV2(URLResolverParams p) {
         if (p.type == null) {
@@ -59,18 +59,10 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
 
     @Override
     public String findURLV3(URLResolverParams p) {
-        try {
-            logger.info("URLResolverParams region "+p.region);
-            logger.info("URLResolverParams type "+p.type);
-            logger.info("URLResolverParams getCacheIdentifier "+p.token.getCacheIdentifier());
-            logger.info("URLResolverParams perspective "+p.perspective);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         if (p.type == null) {
             return p.token.getEndpoint();
         }
-
         Key key = Key.of(p.token.getCacheIdentifier(), p.type, p.perspective, p.region);
 
         String url = CACHE.get(key);
@@ -115,13 +107,13 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
                 }
 
                 switch (p.perspective) {
-                case ADMIN:
-                    return ep.getAdminURL().toString();
-                case INTERNAL:
-                    return ep.getInternalURL().toString();
-                case PUBLIC:
-                default:
-                    return ep.getPublicURL().toString();
+                    case ADMIN:
+                        return ep.getAdminURL().toString();
+                    case INTERNAL:
+                        return ep.getInternalURL().toString();
+                    case PUBLIC:
+                    default:
+                        return ep.getPublicURL().toString();
                 }
             }
         } else {
@@ -182,7 +174,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
     /**
      * Gets the endpoint url.
      *
-     * @param access the current access data source
+     * @param access   the current access data source
      * @param endpoint the endpoint
      * @return the endpoint url
      */

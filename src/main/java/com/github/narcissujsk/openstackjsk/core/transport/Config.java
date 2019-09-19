@@ -31,6 +31,12 @@ public final class Config {
 
     private String  ironicApiVersion;
 
+
+
+    private boolean novaApiVersionEnable;
+
+    private String  novaApiVersion;
+
     private Config() {
     }
 
@@ -187,8 +193,30 @@ public final class Config {
         return this;
     }
 
+    public Config withIronicApiVersion() {
+        this.ironicApiVersion=ClientConstants.Ironic_API_Version;
+        this.ironicApiVersionEnable = Boolean.TRUE;
+        return this;
+    }
+
+    public Config withNovaApiVersion(String novaApiVersion) {
+        this.novaApiVersion=novaApiVersion;
+        this.novaApiVersionEnable = Boolean.TRUE;
+        return this;
+    }
+
+    public Config withNovaApiVersion() {
+        this.novaApiVersion=ClientConstants.Nova_API_Version;
+        this.novaApiVersionEnable = Boolean.TRUE;
+        return this;
+    }
+
     public boolean isIronicApiVersionEnable() {
         return ironicApiVersionEnable;
+    }
+
+    public boolean isNovaApiVersionEnable() {
+        return novaApiVersionEnable;
     }
 
     public void setIronicApiVersionEnable(boolean ironicApiVersionEnable) {
@@ -198,7 +226,17 @@ public final class Config {
     public String getIronicApiVersion() {
         return ironicApiVersion;
     }
+    public void setNovaApiVersionEnable(boolean novaApiVersionEnable) {
+        this.novaApiVersionEnable = novaApiVersionEnable;
+    }
 
+    public String getNovaApiVersion() {
+        return novaApiVersion;
+    }
+
+    public void setNovaApiVersion(String novaApiVersion) {
+        this.novaApiVersion = novaApiVersion;
+    }
     public void setIronicApiVersion(String ironicApiVersion) {
         this.ironicApiVersion = ironicApiVersion;
     }

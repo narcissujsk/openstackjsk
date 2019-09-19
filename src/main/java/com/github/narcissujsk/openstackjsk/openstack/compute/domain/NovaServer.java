@@ -54,6 +54,8 @@ public class NovaServer implements Server {
 	public Date created;
 	public Map<String, String> metadata;
 
+    public List<String> tags;
+
 	@JsonProperty("security_groups")
 	private List<NovaSecurityGroup> securityGroups;
 
@@ -137,8 +139,9 @@ public class NovaServer implements Server {
 
 	@Override
 	public Flavor getFlavor() {
-		if (flavor != null && flavor.getName() == null)
-			flavor = (NovaFlavor) Apis.getComputeServices().flavors().get(flavor.getId());
+		if (flavor != null && flavor.getName() == null) {
+            flavor = (NovaFlavor) Apis.getComputeServices().flavors().get(flavor.getId());
+        }
 		return flavor;
 	}
 
@@ -146,6 +149,11 @@ public class NovaServer implements Server {
 	public String getAccessIPv4() {
 		return accessIPv4;
 	}
+
+    @Override
+    public List<String> getTags() {
+        return tags;
+    }
 
 	@Override
 	public String getAccessIPv6() {

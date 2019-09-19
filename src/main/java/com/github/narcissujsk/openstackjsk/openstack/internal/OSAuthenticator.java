@@ -153,8 +153,6 @@ public class OSAuthenticator {
     }
 
     private static OSClientV3 authenticateV3(KeystoneAuth auth, SessionInfo info, Config config) {
-        org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger("authenticateV3");
-        logger.info("**********************   authenticateV3  *************************");
         if (auth.getType().equals(Type.TOKENLESS)){
             Map headers = new HashMap();
             Authentication.Scope.Project project = auth.getScope().getProject();
@@ -187,10 +185,6 @@ public class OSAuthenticator {
             }
             KeystoneToken keystoneToken = new KeystoneToken();
             keystoneToken.setEndpoint(info.endpoint);
-            if(config.isIronicApiVersionEnable()){
-                headers.put(ClientConstants.HEADER_X_OpenStack_Ironic_API_Version, config.getIronicApiVersion());
-            }
-            logger.info(headers);
             return OSClientSessionV3.createSession(keystoneToken, null, null, config).headers(headers);
         }
 

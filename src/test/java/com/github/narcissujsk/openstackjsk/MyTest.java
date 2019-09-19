@@ -14,13 +14,17 @@ import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 import com.github.narcissujsk.openstackjsk.model.common.Identifier;
 import com.github.narcissujsk.openstackjsk.model.compute.Action;
 import com.github.narcissujsk.openstackjsk.model.compute.Flavor;
+import com.github.narcissujsk.openstackjsk.model.compute.Server;
 import com.github.narcissujsk.openstackjsk.model.compute.ServerCreate;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.Target;
 import org.junit.Test;
 import com.github.narcissujsk.openstackjsk.openstack.OSFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 public class MyTest {
@@ -40,6 +44,16 @@ public class MyTest {
         logger.info(node);
         logger.info(node.getName());
     }
+    @Test
+    public void getServers() {
+        OSClientV3 os = getOpenstackClient();
+        Map filteringParams=new HashMap<>();
+        filteringParams.put("tags","CPS");
+        List<? extends Server> re = os.compute().servers().list(filteringParams);
+        logger.info(re.size());
+        logger.info(re);
+    }
+
     //@Test
     public void poweron() throws JsonProcessingException {
         NodePowerState powerState=NodePowerState.POWEROFF;
@@ -154,6 +168,7 @@ public class MyTest {
         String password = "rnxjAmD24yGUZiF";
         Config config = Config.newConfig().withSSLVerificationDisabled();
         config.withIronicApiVersion("1.37");
+        config.withNovaApiVersion("2.34");
         Identifier domainIdentifier = Identifier.byName(domainname);
         OSClientV3 os = OSFactory.builderV3().endpoint(v3url).credentials(name, password, domainIdentifier)
                 .withConfig(config).authenticate().useRegion("inspurtest");
