@@ -298,7 +298,7 @@ public class NovaServer implements Server {
 				   .add("launched at", launchedAt).add("tenantId", tenantId).add("hostId", hostId)
 				   .add("addresses", addresses).add("hypervisor host", hypervisorHostname)
 				   .add("uuid", uuid).add("powerstate", powerState).add("fault", fault).add("instanceName", instanceName)
-				   .add("vmState", vmState).add("metadata", metadata)
+				   .add("vmState", vmState).add("metadata", metadata).add("tags",tags)
 				   .toString();
 	}
 
