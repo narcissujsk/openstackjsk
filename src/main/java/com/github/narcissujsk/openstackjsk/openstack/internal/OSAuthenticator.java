@@ -49,7 +49,6 @@ import java.util.Map;
  * of the Identity API
  */
 public class OSAuthenticator {
-    org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger("HttpRequest");
 
     private static final String TOKEN_INDICATOR = "Tokens";
     private static final Logger LOG = LoggerFactory.getLogger(OSAuthenticator.class);

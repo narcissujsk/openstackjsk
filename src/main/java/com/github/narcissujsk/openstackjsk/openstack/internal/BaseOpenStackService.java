@@ -19,8 +19,6 @@ import static com.github.narcissujsk.openstackjsk.core.transport.ClientConstants
 import static com.github.narcissujsk.openstackjsk.core.transport.ClientConstants.USER_AGENT;
 
 import java.util.*;
-
-import org.apache.log4j.Logger;
 import com.github.narcissujsk.openstackjsk.api.client.CloudProvider;
 import com.github.narcissujsk.openstackjsk.api.exceptions.OS4JException;
 import com.github.narcissujsk.openstackjsk.api.types.ServiceType;

@@ -16,8 +16,6 @@
 package com.github.narcissujsk.openstackjsk.openstack.provider;
 
 import java.util.Map;
-
-import org.apache.log4j.Logger;
 import com.github.narcissujsk.openstackjsk.api.APIProvider;
 import com.github.narcissujsk.openstackjsk.api.artifact.ArtifactService;
 import com.github.narcissujsk.openstackjsk.api.artifact.ToscaTemplatesArtifactService;

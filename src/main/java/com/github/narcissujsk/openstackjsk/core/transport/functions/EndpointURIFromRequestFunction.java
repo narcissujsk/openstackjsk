@@ -16,10 +16,7 @@
 package com.github.narcissujsk.openstackjsk.core.transport.functions;
 
 import static com.github.narcissujsk.openstackjsk.core.transport.ClientConstants.URI_SEP;
-
-import org.apache.log4j.Logger;
 import com.github.narcissujsk.openstackjsk.core.transport.HttpRequest;
-
 import com.google.common.base.Function;
 
 /**

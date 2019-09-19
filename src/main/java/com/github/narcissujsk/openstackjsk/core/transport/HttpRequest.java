@@ -21,9 +21,6 @@ import com.github.narcissujsk.openstackjsk.api.EndpointTokenProvider;
 import com.github.narcissujsk.openstackjsk.api.types.ServiceType;
 import com.github.narcissujsk.openstackjsk.model.ModelEntity;
 import com.github.narcissujsk.openstackjsk.model.common.Payload;
-
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
