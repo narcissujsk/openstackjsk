@@ -36,8 +36,9 @@ public class JsonToMessageFunction implements Function<String, String> {
     public String apply(String json) {
         if (json != null && json.contains("message")) {
             Matcher m = MESSAGE_PATTERN.matcher(json);
-            if (m.matches())
+            if (m.matches()) {
                 return m.group(1);
+            }
         }
         return json;
     }

@@ -21,7 +21,9 @@ import com.github.narcissujsk.openstackjsk.model.barbican.Secret;
 import com.github.narcissujsk.openstackjsk.model.barbican.builder.ContainerCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.barbican.builder.ContainerSecretBuilder;
 import com.github.narcissujsk.openstackjsk.model.barbican.builder.SecretCreateBuilder;
+import com.github.narcissujsk.openstackjsk.model.baremetal.builder.BaremetalBuilders;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortBuilder;
+import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortgroupBuilder;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.builder.LinkBuilder;
 import com.github.narcissujsk.openstackjsk.model.compute.builder.*;
@@ -73,8 +75,10 @@ import com.github.narcissujsk.openstackjsk.model.workflow.builder.WorkflowBuilde
 import com.github.narcissujsk.openstackjsk.openstack.barbican.domain.BarbicanContainer;
 import com.github.narcissujsk.openstackjsk.openstack.barbican.domain.BarbicanContainerSecret;
 import com.github.narcissujsk.openstackjsk.openstack.barbican.domain.BarbicanSecret;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.builder.IronicBuilders;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNodeCreate;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.common.GenericLink;
 import com.github.narcissujsk.openstackjsk.openstack.compute.builder.NovaBuilders;
 import com.github.narcissujsk.openstackjsk.openstack.compute.domain.*;
@@ -157,7 +161,16 @@ public class Builders {
     public static NodeCreateBuilder node() {
         return IronicNodeCreate.builder();
     }
+    public static BaremetalBuilders baremetal() {
+        return new IronicBuilders();
+    }
+    public static IronicPortBuilder ironicPort() {
+        return  IronicPort.builder();
+    }
 
+    public static IronicPortgroupBuilder ironicPortgroup() {
+        return  IronicPortgroup.builder();
+    }
     public static BlockDeviceMappingBuilder blockDeviceMapping() {
         return NovaBlockDeviceMappingCreate.builder();
     }
@@ -256,10 +269,6 @@ public class Builders {
         return NeutronPort.builder();
     }
 
-
-    public static IronicPortBuilder ironicPort() {
-        return IronicPort.builder();
-    }
 
     /**
      * The builder to create a Router
@@ -999,6 +1008,8 @@ public class Builders {
     public static ComputeBuilders compute() {
         return new NovaBuilders();
     }
+
+
 
     /**
      * The Storage builders

@@ -7,12 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.model.compute.builder.ServerCreateBuilder;
 import com.github.narcissujsk.openstackjsk.openstack.compute.domain.NovaServerCreate;
 
-/**
- * @program: openstack4j-core
- * @description:
- * @author: jiangsk@inspur.com
- * @create: 2019-09-10 14:42
- **/
 public class IronicNodeCreate implements NodeCreate {
 
     @JsonProperty("name")

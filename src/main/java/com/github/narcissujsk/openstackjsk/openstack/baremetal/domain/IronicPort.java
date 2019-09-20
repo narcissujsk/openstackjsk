@@ -1,6 +1,5 @@
 package com.github.narcissujsk.openstackjsk.openstack.baremetal.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,19 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.sf.json.JSONObject;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Port;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortBuilder;
-import com.github.narcissujsk.openstackjsk.model.common.Link;
-import com.github.narcissujsk.openstackjsk.model.network.builder.PortBuilder;
 import com.github.narcissujsk.openstackjsk.openstack.common.GenericLink;
-import com.github.narcissujsk.openstackjsk.openstack.networking.domain.NeutronPort;
+
 
 import java.util.List;
 
-/**
- * @program: openstack4j-core
- * @description:
- * @author: jiangsk@inspur.com
- * @create: 2019-09-11 16:19
- **/
+
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class IronicPort implements Port {
 

@@ -10,10 +10,6 @@ import com.github.narcissujsk.openstackjsk.model.compute.builder.ServerCreateBui
 import java.util.List;
 import java.util.Map;
 
-
-/**
- * @author jiangsk
- */
 public interface NodeService extends RestService {
 
 	List<? extends Node> list();

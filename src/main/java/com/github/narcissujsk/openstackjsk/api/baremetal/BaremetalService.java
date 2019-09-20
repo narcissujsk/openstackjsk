@@ -7,21 +7,15 @@ import com.github.narcissujsk.openstackjsk.model.common.Extension;
 
 import java.util.List;
 
-/**
- * Compute (Nova) Operations API
- * 
- * @author Jeremy Unruh
- */
+
 public interface BaremetalService extends RestService {
 
-	/**
-	 * Flavor Service API
-	 *
-	 * @return the flavor service
-	 */
+
     NodeService nodes();
 
     IronicPortService ports();
+
+    IronicPortgroupService portgroups();
 
 
 }

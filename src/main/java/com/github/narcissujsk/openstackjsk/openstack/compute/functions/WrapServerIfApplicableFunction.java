@@ -36,8 +36,9 @@ public class WrapServerIfApplicableFunction implements Function<ServerCreate, Mo
      */
     @Override
     public ModelEntity apply(ServerCreate server) {
-        if (server.getSchedulerHints() != null)
+        if (server.getSchedulerHints() != null) {
             return NovaServerCreateWithHintsWrapper.wrap(server);
+        }
         
         return server;
     }

@@ -4,13 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.model.ModelEntity;
 
-/**
- * @program: openstack4j-core
- * @description:
- * @author: jiangsk@inspur.com
- * @create: 2019-09-11 09:29
- **/
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Target implements ModelEntity {
     public Target(String target) {

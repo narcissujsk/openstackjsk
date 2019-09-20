@@ -565,6 +565,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
                     .resolver(config != null ? config.getResolver() : null)
                     .perspective(perspective)
                     .region(region));
+            LOG.info(urlv3);
             String endpoint = addNATIfApplicable(urlv3);
             return endpoint;
         }

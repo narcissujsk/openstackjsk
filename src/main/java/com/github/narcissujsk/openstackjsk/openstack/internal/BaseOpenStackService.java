@@ -34,9 +34,12 @@ import com.github.narcissujsk.openstackjsk.model.identity.v3.Service;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class BaseOpenStackService {
+    private static final Logger LOG = LoggerFactory.getLogger(BaseOpenStackService.class);
     ServiceType serviceType = ServiceType.IDENTITY;
     Function<String, String> endpointFunc;
 
@@ -123,7 +126,7 @@ public class BaseOpenStackService {
         Map headers = ses.getHeaders();
         Config config = ses.getConfig();
 
-
+        LOG.info("path: "+path);
         // add headers
         if (config.isIronicApiVersionEnable()) {
             if (headers == null) {

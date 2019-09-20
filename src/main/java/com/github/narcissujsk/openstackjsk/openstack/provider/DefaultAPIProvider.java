@@ -24,6 +24,7 @@ import com.github.narcissujsk.openstackjsk.api.barbican.ContainerService;
 import com.github.narcissujsk.openstackjsk.api.barbican.SecretService;
 import com.github.narcissujsk.openstackjsk.api.baremetal.BaremetalService;
 import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortService;
+import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortgroupService;
 import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
 import com.github.narcissujsk.openstackjsk.api.compute.ComputeFloatingIPService;
 import com.github.narcissujsk.openstackjsk.api.compute.ComputeImageService;
@@ -196,6 +197,7 @@ import com.github.narcissujsk.openstackjsk.openstack.barbican.internal.SecretSer
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.BaremetalServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.IronicPortServiceImpl;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.IronicPortgroupServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.NodeServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.compute.internal.ComputeFloatingIPServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.compute.internal.ComputeImageServiceImpl;
@@ -254,6 +256,7 @@ import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.TokenS
 import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.UserServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.image.internal.ImageServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.image.v2.internal.TaskServiceImpl;
+import com.github.narcissujsk.openstackjsk.openstack.internal.BaseOpenStackService;
 import com.github.narcissujsk.openstackjsk.openstack.magnum.internal.MagnumServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.manila.internal.SchedulerStatsServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.manila.internal.SecurityServiceServiceImpl;
@@ -360,6 +363,8 @@ import com.github.narcissujsk.openstackjsk.openstack.trove.internal.TroveService
 
 import com.google.common.collect.Maps;
 import com.github.narcissujsk.openstackjsk.openstack.workflow.internal.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Simple API Provider which keeps internally Maps interface implementations as singletons
@@ -367,6 +372,7 @@ import com.github.narcissujsk.openstackjsk.openstack.workflow.internal.*;
  * @author Jeremy Unruh
  */
 public class DefaultAPIProvider implements APIProvider {
+    private static final Logger LOG = LoggerFactory.getLogger(BaseOpenStackService.class);
     private static final Map<Class<?>, Class<?>> bindings = Maps.newHashMap();
     private static final Map<Class<?>, Object> instances = Maps.newConcurrentMap();
 
@@ -375,6 +381,7 @@ public class DefaultAPIProvider implements APIProvider {
      */
     @Override
     public void initialize() {
+
         bind(com.github.narcissujsk.openstackjsk.api.identity.v2.IdentityService.class, com.github.narcissujsk.openstackjsk.openstack.identity.v2.internal.IdentityServiceImpl.class);
         bind(TenantService.class, TenantServiceImpl.class);
         bind(ServiceManagerService.class, ServiceManagerServiceImpl.class);
@@ -570,6 +577,9 @@ public class DefaultAPIProvider implements APIProvider {
         bind(BaremetalService.class, BaremetalServiceImpl.class);
         bind(NodeService.class, NodeServiceImpl.class);
         bind(IronicPortService.class, IronicPortServiceImpl.class);
+        bind(IronicPortgroupService.class, IronicPortgroupServiceImpl.class);
+
+        LOG.info("DefaultAPIProvider init ");
     }
 
     /**

@@ -6,12 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.narcissujsk.openstackjsk.model.baremetal.LocalLinkConnection;
 
-/**
- * @program: openstack4j-core
- * @description:
- * @author: jiangsk@inspur.com
- * @create: 2019-09-12 09:43
- **/
+
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class IronicPortLocalLinkConnection implements LocalLinkConnection {
 

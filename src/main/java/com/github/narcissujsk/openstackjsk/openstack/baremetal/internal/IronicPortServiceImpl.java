@@ -25,11 +25,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.github.narcissujsk.openstackjsk.core.transport.ClientConstants.*;
 
-/**
- * Server Operation API implementation
- *
- * @author Jeremy Unruh
- */
+
 public class IronicPortServiceImpl extends BaseBaremetalServices implements IronicPortService {
 
     private static final Logger LOG = LoggerFactory.getLogger(IronicPortServiceImpl.class);

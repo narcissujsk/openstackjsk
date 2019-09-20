@@ -7,11 +7,7 @@ import com.github.narcissujsk.openstackjsk.openstack.compute.domain.actions.Serv
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
 import com.github.narcissujsk.openstackjsk.openstack.internal.BaseOpenStackService;
 
-/**
- * Base class for Computer / Nova services
- * 
- * @author Jeremy Unruh
- */
+
 public class BaseBaremetalServices extends BaseOpenStackService {
 
     protected BaseBaremetalServices() {
