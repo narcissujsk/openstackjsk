@@ -7,12 +7,16 @@ import com.github.narcissujsk.openstackjsk.model.baremetal.Portgroup;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface IronicPortgroupService extends RestService {
 
 	List<? extends Portgroup> list();
+
 	List<? extends Portgroup> list(boolean detail);
+
+    List<? extends Portgroup> list(Map<String, String> filteringParams);
 
     Portgroup get(String uuid);
 

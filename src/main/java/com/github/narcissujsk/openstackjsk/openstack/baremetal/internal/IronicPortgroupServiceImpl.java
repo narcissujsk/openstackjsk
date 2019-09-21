@@ -5,14 +5,17 @@ import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortgroupService;
 import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Portgroup;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.model.compute.Server;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
+import com.github.narcissujsk.openstackjsk.openstack.compute.domain.NovaServer;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -28,6 +31,17 @@ public class IronicPortgroupServiceImpl extends BaseBaremetalServices implements
     @Override
     public List<? extends Portgroup> list(boolean detail) {
         return get(IronicPorts.class, uri("v1/portgroups/detail")).execute().getList();
+    }
+
+    @Override
+    public List<? extends Portgroup> list(Map<String, String> filteringParams) {
+        Invocation<IronicPorts> invocation = get(IronicPorts.class, "v1/portgroups/detail");
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                invocation = invocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return invocation.execute().getList();
     }
 
     @Override

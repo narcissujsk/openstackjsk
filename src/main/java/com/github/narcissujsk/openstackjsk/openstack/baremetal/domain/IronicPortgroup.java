@@ -10,18 +10,40 @@ import com.github.narcissujsk.openstackjsk.openstack.common.GenericLink;
 import net.sf.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class IronicPortgroup implements Portgroup {
 
+    @JsonProperty("uuid")
+    public String uuid;
+
     @JsonProperty("name")
     public String name;
 
-    @JsonProperty("uuid")
-    public String uuid;
     @JsonProperty("address")
     public String address;
+
+    @JsonProperty("node_uuid")
+    public String nodeUuid;
+
+    @JsonProperty("standalone_ports_supported")
+    public Boolean standalonePortsSupported;
+
+
+    @JsonProperty("internal_info")
+    public JSONObject internalInfo;
+
+
+    @JsonProperty("extra")
+    public Map<String,String> extra;
+
+    @JsonProperty("mode")
+    public String mode;
+
+    @JsonProperty("properties")
+    public JSONObject properties;
 
     @JsonProperty("created_at")
     public String createdAt;
@@ -30,19 +52,11 @@ public class IronicPortgroup implements Portgroup {
     public String updatedAt;
 
 
-    @JsonProperty("node_uuid")
-    public String nodeUuid;
-
     public List<GenericLink> links;
 
+    public List<GenericLink> ports;
 
 
-
-    @JsonProperty("extra")
-    public JSONObject extra;
-
-    @JsonProperty("internal_info")
-    public JSONObject internalInfo;
 
 
 
@@ -73,7 +87,95 @@ public class IronicPortgroup implements Portgroup {
         this.nodeUuid = nodeUuid;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Boolean getStandalonePortsSupported() {
+        return standalonePortsSupported;
+    }
+
+    public void setStandalonePortsSupported(Boolean standalonePortsSupported) {
+        this.standalonePortsSupported = standalonePortsSupported;
+    }
+
+    @Override
+    public JSONObject getInternalInfo() {
+        return internalInfo;
+    }
+
+    public void setInternalInfo(JSONObject internalInfo) {
+        this.internalInfo = internalInfo;
+    }
+
+    @Override
+    public Map<String, String> getExtra() {
+        return extra;
+    }
+
+    public void setExtra(Map<String, String> extra) {
+        this.extra = extra;
+    }
+
+    @Override
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    @Override
+    public JSONObject getProperties() {
+        return properties;
+    }
+
+    public void setProperties(JSONObject properties) {
+        this.properties = properties;
+    }
+
+    @Override
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public List<GenericLink> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<GenericLink> links) {
+        this.links = links;
+    }
+
+    @Override
+    public List<GenericLink> getPorts() {
+        return ports;
+    }
+
+    public void setPorts(List<GenericLink> ports) {
+        this.ports = ports;
+    }
 
     public static IronicPortgroupConcreteBuilder builder() {
          return new IronicPortgroupConcreteBuilder();
