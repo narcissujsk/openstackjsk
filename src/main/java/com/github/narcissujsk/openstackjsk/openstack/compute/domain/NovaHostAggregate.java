@@ -155,7 +155,8 @@ public class NovaHostAggregate implements HostAggregate {
 		/**
 		 * NovaHostAggregates
 		 */
-		public List<NovaHostAggregate> value() {
+		@Override
+        public List<NovaHostAggregate> value() {
 			return aggregates;
 		}
 

@@ -78,6 +78,17 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
     }
 
     @Override
+    public List<? extends Node> list(Map<String, String> filteringParams) {
+        Invocation<Nodes> invocation = get(Nodes.class, "v1/nodes/detail");
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                invocation = invocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return invocation.execute().getList();
+    }
+
+    @Override
     public Node get(String nodeid) {
         checkNotNull(nodeid);
         return get(IronicNode.class, uri("/nodes/%s", nodeid)).execute();

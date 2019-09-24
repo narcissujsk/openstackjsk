@@ -70,8 +70,6 @@ public class BaseOpenStackService {
     }
 
     protected <R> Invocation<ActionResponse> postWithResponse(String... path) {
-        System.out.println(path);
-
         return builder(ActionResponse.class, path, HttpMethod.POST);
     }
 

@@ -91,6 +91,7 @@ public class HostAggregateServiceImpl extends BaseComputeServices implements
 	public HostAggregate create(String name,String availabilityZone) {
 		checkNotNull(name);
 		checkNotNull(availabilityZone);
+
 		// modify by chenyan 2017.02.13
 		//return post(NovaHostAggregate.class, uri("/os-aggregates")).entity(NovaHostAggregate.create(name, availabilityZone)).execute();
 		return post(NovaHostAggregate.class, uri("/os-aggregates")).entity(new NovaHostAggregateCreate(name, availabilityZone)).execute();
