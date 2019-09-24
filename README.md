@@ -1,6 +1,11 @@
 # openstackjsk
 openstack jdk
 
+        <dependency>
+            <groupId>com.github.narcissujsk</groupId>
+            <artifactId>openstackjsk</artifactId>
+            <version>1.3.2-SNAPSHOT</version>
+        </dependency>
 发布
 mvn clean deploy -P release
 
