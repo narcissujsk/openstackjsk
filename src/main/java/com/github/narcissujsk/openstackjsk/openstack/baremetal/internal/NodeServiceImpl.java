@@ -4,6 +4,7 @@ package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
 import com.github.narcissujsk.openstackjsk.core.transport.HttpResponse;
+import com.github.narcissujsk.openstackjsk.model.ModelEntity;
 import com.github.narcissujsk.openstackjsk.model.baremetal.*;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
@@ -14,6 +15,7 @@ import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,6 +89,43 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
         checkNotNull(nodeid);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/v1/nodes/%s", nodeid)).executeWithResponse()
+        );
+    }
+
+
+    @Override
+    public JSONObject validate(String nodeid) {
+        checkNotNull(nodeid);
+        return  get(JSONObject.class, uri("/v1/nodes/%s/validate", nodeid)).execute()  ;
+    }
+
+
+    public static class Maintenance implements ModelEntity {
+
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty("reason")
+        private String reason;
+
+        public Maintenance(String reason) {
+            this.reason = reason;
+        }
+    }
+
+    @Override
+    public ActionResponse setMaintenanceFlag(String nodeid, String reason) {
+        checkNotNull(nodeid);
+        Maintenance entity = new Maintenance(reason);
+        return ToActionResponseFunction.INSTANCE.apply(
+                put(Void.class, uri("/v1/nodes/%s/maintenance", nodeid)).entity(entity).executeWithResponse()
+        );
+    }
+
+    @Override
+    public ActionResponse clearMaintenanceFlag(String nodeid) {
+        checkNotNull(nodeid);
+        return ToActionResponseFunction.INSTANCE.apply(
+                delete(Void.class, uri("/v1/nodes/%s/maintenance", nodeid)).executeWithResponse()
         );
     }
 

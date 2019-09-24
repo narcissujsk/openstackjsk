@@ -5,6 +5,7 @@ import com.github.narcissujsk.openstackjsk.model.baremetal.*;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
+import net.sf.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -30,5 +31,12 @@ public interface NodeService extends RestService {
     ActionResponse power(String nodeid, NodePowerState nodePowerState);
 
     ActionResponse provision(String nodeid, NodeProvisionState nodeProvisionState);
+
+    JSONObject validate(String nodeid);
+
+    ActionResponse setMaintenanceFlag(String nodeid, String reason);
+
+    ActionResponse clearMaintenanceFlag(String nodeid);
+
 
 }
