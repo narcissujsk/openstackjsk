@@ -56,42 +56,48 @@ public class KeystoneRole implements Role {
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getId() {
+	@Override
+    public String getId() {
 		return id;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getName() {
+	@Override
+    public String getName() {
 		return name;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getDescription() {
+	@Override
+    public String getDescription() {
 		return description;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean isEnabled() {
+	@Override
+    public boolean isEnabled() {
 		return (enabled != null && enabled);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getTenantId() {
+	@Override
+    public String getTenantId() {
 		return tenantId;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getServiceId() {
+	@Override
+    public String getServiceId() {
 		return serviceId;
 	}
 
