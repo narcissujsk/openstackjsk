@@ -72,9 +72,8 @@ public class IronicNode implements Node {
     public String chassisUuid;
 
 
-
     @JsonProperty("extra")
-    public Map<String ,Object> extra;
+    public Map<String,String> extra;
 
     @JsonProperty("console_enabled")
     public boolean consoleEnabled;
@@ -205,7 +204,7 @@ public class IronicNode implements Node {
     }
 
     @Override
-    public Map<String, Object> getExtra() {
+    public Map<String, String> getExtra() {
         return extra;
     }
 
@@ -475,7 +474,7 @@ public class IronicNode implements Node {
         this.chassisUuid = chassisUuid;
     }
 
-    public void setExtra(Map<String, Object> extra) {
+    public void setExtra(Map<String, String> extra) {
         this.extra = extra;
     }
 

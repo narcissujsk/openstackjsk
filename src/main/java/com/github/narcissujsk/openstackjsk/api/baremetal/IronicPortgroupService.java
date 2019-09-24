@@ -1,10 +1,9 @@
 package com.github.narcissujsk.openstackjsk.api.baremetal;
 
 import com.github.narcissujsk.openstackjsk.common.RestService;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
-import com.github.narcissujsk.openstackjsk.model.baremetal.Port;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Portgroup;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public interface IronicPortgroupService extends RestService {
 
     Portgroup create(Portgroup portgroup);
 
-    Portgroup update(String portgroupId, List<ArtifactUpdate> update);
+    Portgroup update(String portgroupId, List<OpenstackUpdate> update);
 
 
     ActionResponse delete(String uuid);

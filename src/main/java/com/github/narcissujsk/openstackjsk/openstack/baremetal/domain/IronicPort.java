@@ -11,6 +11,7 @@ import com.github.narcissujsk.openstackjsk.openstack.common.GenericLink;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -57,7 +58,7 @@ public class IronicPort implements Port {
     }
 
     @JsonProperty("extra")
-    public JSONObject extra;
+    public Map<String,String> extra;
 
     @JsonProperty("internal_info")
     public JSONObject internalInfo;
@@ -111,11 +112,11 @@ public class IronicPort implements Port {
     }
 
     @Override
-    public JSONObject getExtra() {
+    public Map<String,String>  getExtra() {
         return extra;
     }
 
-    public void setExtra(JSONObject extra) {
+    public void setExtra(Map<String,String>  extra) {
         this.extra = extra;
     }
 

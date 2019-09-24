@@ -1,11 +1,10 @@
 package com.github.narcissujsk.openstackjsk.api.baremetal;
 
 import com.github.narcissujsk.openstackjsk.common.RestService;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.*;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
-import com.github.narcissujsk.openstackjsk.model.compute.builder.ServerCreateBuilder;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public interface NodeService extends RestService {
 
     NodeCreateBuilder nodeBuilder();
 
-    Node update(String nodeid, List<ArtifactUpdate> update);
+    Node update(String nodeid, List<OpenstackUpdate> update);
 
     ActionResponse power(String nodeid, NodePowerState nodePowerState);
 

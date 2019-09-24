@@ -13,17 +13,45 @@ import java.util.Map;
 public interface NodeCreate extends ModelEntity, Buildable<NodeCreateBuilder> {
 
 
-    public String getName();
+     String getName();
 
-    public String getDriver() ;
+     String getDriver() ;
 
-    public JSONObject getDriverInfo();
+     JSONObject getDriverInfo();
 
-    public JSONObject getProperties();
+     JSONObject getProperties();
 
-    public String getNetworkInterface() ;
+     String getNetworkInterface() ;
 
-    public String getResourceClass();
+     String getResourceClass();
 
+     String getBootInterface() ;
+
+     String getConductorGroup();
+
+     String getConsoleInterface() ;
+
+     String getDeployInterface();
+
+     Map<String, String> getExtra();
+
+
+     String getInspectInterface() ;
+
+     String getManagementInterface() ;
+
+     String getPowerInterface();
+
+     String getRaidInterface() ;
+
+     String getRescueInterface();
+
+     String getStorageInterface();
+
+     String getVendorInterface() ;
+
+     String getOwner();
+
+     String getDescription() ;
 
 }

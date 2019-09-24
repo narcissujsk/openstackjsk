@@ -22,16 +22,6 @@ public interface NodePortService extends RestService {
 
 	Node get(String nodeid);
 
-    Node create(NodeCreate nodeid);
 
-    ActionResponse delete(String nodeid);
-
-    NodeCreateBuilder nodeBuilder();
-
-    Node update(String nodeid, List<ArtifactUpdate> update);
-
-    ActionResponse power(String nodeid, NodePowerState nodePowerState);
-
-    ActionResponse provision(String nodeid, NodeProvisionState nodeProvisionState);
 
 }

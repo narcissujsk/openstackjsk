@@ -13,43 +13,21 @@
  * 	License for the specific language governing permissions and limitations under
  * 	the License.
  *******************************************************************************/
-package com.github.narcissujsk.openstackjsk.openstack.common;
+package com.github.narcissujsk.openstackjsk.model.common.builder;
 
-
-import com.github.narcissujsk.openstackjsk.model.ModelEntity;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.github.narcissujsk.openstackjsk.common.Buildable;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
 /**
- * Simple name value pair based Entity
- * 
- * @author Jeremy Unruh
+ * A Builder which creates a ArtifactUpdate
+ *
+ * @author Pavan Vadavi
  */
-public class ListEntity<T> extends ArrayList<T> implements ModelEntity {
+public interface UpdateBuilder extends Buildable.Builder<UpdateBuilder, OpenstackUpdate> {
 
-    private static final long serialVersionUID = 1L;
+    UpdateBuilder op(String op);
 
-    /*
-    public static ListEntity create(String key, Object value) {
-        return new ListEntity().add(key, value);
-    }
-    */
+    UpdateBuilder path(String path);
 
-    public ListEntity(){
-        super();
-    }
-
-    public ListEntity(List<T> list){
-    	super(list);
-    }
-    
-    
-    @Override
-    public boolean add(T value) {
-    	return super.add(value);
-        //super.put(value);
-        //return this;
-    }
-    
+    UpdateBuilder value(String value);
 }

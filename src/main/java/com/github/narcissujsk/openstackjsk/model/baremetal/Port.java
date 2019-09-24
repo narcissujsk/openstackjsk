@@ -6,6 +6,7 @@ import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortBui
 import com.github.narcissujsk.openstackjsk.model.common.Link;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Port extends ModelEntity, Buildable<IronicPortBuilder> {
 
@@ -25,7 +26,7 @@ public interface Port extends ModelEntity, Buildable<IronicPortBuilder> {
 
 	List<? extends Link> getLinks();
 
-	JSONObject getExtra();
+    Map<String,String> getExtra();
 
     JSONObject getInternalInfo();
 

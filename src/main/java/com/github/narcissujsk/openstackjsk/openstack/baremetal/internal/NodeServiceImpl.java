@@ -2,49 +2,23 @@
 package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.narcissujsk.openstackjsk.api.Apis;
-import com.github.narcissujsk.openstackjsk.api.baremetal.BaremetalService;
 import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
-import com.github.narcissujsk.openstackjsk.api.compute.ServerService;
-import com.github.narcissujsk.openstackjsk.api.compute.ext.InstanceActionsService;
-import com.github.narcissujsk.openstackjsk.api.compute.ext.InterfaceService;
-import com.github.narcissujsk.openstackjsk.core.transport.ExecutionOptions;
 import com.github.narcissujsk.openstackjsk.core.transport.HttpResponse;
-import com.github.narcissujsk.openstackjsk.core.transport.propagation.PropagateOnStatus;
-import com.github.narcissujsk.openstackjsk.model.ModelEntity;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.*;
 import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
-import com.github.narcissujsk.openstackjsk.model.compute.*;
-import com.github.narcissujsk.openstackjsk.model.compute.Server.Status;
-import com.github.narcissujsk.openstackjsk.model.compute.VNCConsole.Type;
-import com.github.narcissujsk.openstackjsk.model.compute.actions.BackupOptions;
-import com.github.narcissujsk.openstackjsk.model.compute.actions.EvacuateOptions;
-import com.github.narcissujsk.openstackjsk.model.compute.actions.LiveMigrateOptions;
-import com.github.narcissujsk.openstackjsk.model.compute.actions.RebuildOptions;
-import com.github.narcissujsk.openstackjsk.model.compute.builder.ServerCreateBuilder;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNode;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNodeCreate;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.Target;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
-import com.github.narcissujsk.openstackjsk.openstack.common.Metadata;
-import com.github.narcissujsk.openstackjsk.openstack.compute.domain.*;
-import com.github.narcissujsk.openstackjsk.openstack.compute.domain.NovaServer.Servers;
-import com.github.narcissujsk.openstackjsk.openstack.compute.domain.actions.*;
-import com.github.narcissujsk.openstackjsk.openstack.compute.domain.actions.BasicActions.*;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
-import com.github.narcissujsk.openstackjsk.openstack.compute.functions.WrapServerIfApplicableFunction;
-import com.github.narcissujsk.openstackjsk.openstack.compute.internal.BaseComputeServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.github.narcissujsk.openstackjsk.openstack.compute.domain.actions.CreateSnapshotAction.create;
@@ -103,9 +77,9 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
                 .execute();
     }
     @Override
-    public Node update(String nodeid, List<ArtifactUpdate> update) {
+    public Node update(String nodeid, List<OpenstackUpdate> update) {
         checkNotNull(update);
-        return  patch(IronicNode.class, uri("/v1/nodes/%s", nodeid)).entity(new ListEntity<ArtifactUpdate>(update)).execute();
+        return  patch(IronicNode.class, uri("/v1/nodes/%s", nodeid)).entity(new ListEntity<OpenstackUpdate>(update)).execute();
 
     }
     @Override

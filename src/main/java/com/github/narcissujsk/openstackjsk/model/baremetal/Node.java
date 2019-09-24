@@ -50,7 +50,7 @@ public interface Node extends ModelEntity {
 
     public String getChassisUuid() ;
 
-    public Map<String, Object> getExtra() ;
+    public Map<String, String> getExtra() ;
 
     public boolean isConsoleEnabled() ;
 

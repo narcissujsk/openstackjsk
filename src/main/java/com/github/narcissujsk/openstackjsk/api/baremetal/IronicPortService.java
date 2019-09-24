@@ -1,9 +1,9 @@
 package com.github.narcissujsk.openstackjsk.api.baremetal;
 
 import com.github.narcissujsk.openstackjsk.common.RestService;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.*;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface IronicPortService extends RestService {
 
 	Port create(Port port);
 
-    Port update(String portid, List<ArtifactUpdate> update);
+    Port update(String portid, List<OpenstackUpdate> update);
 
 
     ActionResponse delete(String uuid);

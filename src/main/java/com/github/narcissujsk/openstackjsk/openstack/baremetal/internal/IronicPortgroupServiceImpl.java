@@ -2,14 +2,12 @@ package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortgroupService;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Portgroup;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
-import com.github.narcissujsk.openstackjsk.model.compute.Server;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
-import com.github.narcissujsk.openstackjsk.openstack.compute.domain.NovaServer;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,9 +58,9 @@ public class IronicPortgroupServiceImpl extends BaseBaremetalServices implements
     }
 
     @Override
-    public Portgroup update(String portgroupId, List<ArtifactUpdate> update) {
+    public Portgroup update(String portgroupId, List<OpenstackUpdate> update) {
         checkNotNull(update);
-        return  patch(IronicPortgroup.class, uri("/v1/portgroups/%s", portgroupId)).entity(new ListEntity<ArtifactUpdate>(update)).execute();
+        return  patch(IronicPortgroup.class, uri("/v1/portgroups/%s", portgroupId)).entity(new ListEntity<OpenstackUpdate>(update)).execute();
 
     }
 

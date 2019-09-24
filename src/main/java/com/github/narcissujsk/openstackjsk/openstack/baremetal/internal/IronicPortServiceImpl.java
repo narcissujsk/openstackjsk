@@ -2,28 +2,19 @@ package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
-import com.github.narcissujsk.openstackjsk.core.transport.HttpResponse;
-import com.github.narcissujsk.openstackjsk.model.artifact.ArtifactUpdate;
 import com.github.narcissujsk.openstackjsk.model.baremetal.*;
-import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
-import com.github.narcissujsk.openstackjsk.model.network.options.PortListOptions;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNode;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNodeCreate;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.Target;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
+import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
-import com.github.narcissujsk.openstackjsk.openstack.networking.domain.NeutronPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.github.narcissujsk.openstackjsk.core.transport.ClientConstants.*;
 
 
 public class IronicPortServiceImpl extends BaseBaremetalServices implements IronicPortService {
@@ -55,9 +46,9 @@ public class IronicPortServiceImpl extends BaseBaremetalServices implements Iron
     }
 
     @Override
-    public Port update(String portid, List<ArtifactUpdate> update) {
+    public Port update(String portid, List<OpenstackUpdate> update) {
         checkNotNull(update);
-        return  patch(IronicPort.class, uri("/v1/ports/%s", portid)).entity(new ListEntity<ArtifactUpdate>(update)).execute();
+        return  patch(IronicPort.class, uri("/v1/ports/%s", portid)).entity(new ListEntity<OpenstackUpdate>(update)).execute();
 
     }
 
