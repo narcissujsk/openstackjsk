@@ -38,5 +38,6 @@ public interface NodeService extends RestService {
 
     ActionResponse clearMaintenanceFlag(String nodeid);
 
+    List<String > getSupportedBootDevice(String nodeid);
 
 }

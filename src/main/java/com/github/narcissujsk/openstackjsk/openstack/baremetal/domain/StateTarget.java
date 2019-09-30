@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.narcissujsk.openstackjsk.model.ModelEntity;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Target implements ModelEntity {
-    public Target(String target) {
+public class StateTarget implements ModelEntity {
+    public StateTarget(String target) {
         this.target = target;
     }
-    public Target() {
+    public StateTarget() {
 
     }
     @JsonProperty("target")

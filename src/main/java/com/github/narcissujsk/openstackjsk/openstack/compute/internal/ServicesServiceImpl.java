@@ -47,8 +47,7 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
 	 * @Title: list
 	 * @param filteringParams
 	 * @return
-	 * @see com.github.narcissujsk.openstackjsk.api.compute.ServicesService#list(java.util.Map)
-	 */
+     */
 	@Override
 	public List<? extends Service> list(Map<String, String> filteringParams) {
 		Invocation<Services> req = get(Services.class, uri("/os-services"));
@@ -67,8 +66,7 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
 	 * @param binary
 	 * @param host
 	 * @return
-	 * @see com.github.narcissujsk.openstackjsk.api.compute.ServicesService#enableService(java.lang.String, java.lang.String)
-	 */
+     */
 	@Override
 	public ExtService enableService(String binary, String host) {
 		checkNotNull(binary);
@@ -84,8 +82,7 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
 	 * @param binary
 	 * @param host
 	 * @return
-	 * @see com.github.narcissujsk.openstackjsk.api.compute.ServicesService#disableService(java.lang.String, java.lang.String)
-	 */
+     */
 	@Override
 	public ExtService disableService(String binary, String host) {
 		checkNotNull(binary);

@@ -1,10 +1,7 @@
 package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 
 import com.github.narcissujsk.openstackjsk.api.Apis;
-import com.github.narcissujsk.openstackjsk.api.baremetal.BaremetalService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortgroupService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
+import com.github.narcissujsk.openstackjsk.api.baremetal.*;
 
 
 public class BaremetalServiceImpl extends BaseBaremetalServices implements BaremetalService {
@@ -23,6 +20,11 @@ public class BaremetalServiceImpl extends BaseBaremetalServices implements Barem
     @Override
     public IronicPortgroupService portgroups() {
         return Apis.get(IronicPortgroupService.class);
+    }
+
+    @Override
+    public IronicVolumeService volume() {
+        return Apis.get(IronicVolumeService.class);
     }
 
 

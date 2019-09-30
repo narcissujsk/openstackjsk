@@ -22,10 +22,7 @@ import com.github.narcissujsk.openstackjsk.api.artifact.ToscaTemplatesArtifactSe
 import com.github.narcissujsk.openstackjsk.api.barbican.BarbicanService;
 import com.github.narcissujsk.openstackjsk.api.barbican.ContainerService;
 import com.github.narcissujsk.openstackjsk.api.barbican.SecretService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.BaremetalService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.IronicPortgroupService;
-import com.github.narcissujsk.openstackjsk.api.baremetal.NodeService;
+import com.github.narcissujsk.openstackjsk.api.baremetal.*;
 import com.github.narcissujsk.openstackjsk.api.compute.ComputeFloatingIPService;
 import com.github.narcissujsk.openstackjsk.api.compute.ComputeImageService;
 import com.github.narcissujsk.openstackjsk.api.compute.ComputeSecurityGroupService;
@@ -72,16 +69,7 @@ import com.github.narcissujsk.openstackjsk.api.heat.StackService;
 import com.github.narcissujsk.openstackjsk.api.heat.TemplateService;
 import com.github.narcissujsk.openstackjsk.api.identity.v2.ServiceManagerService;
 import com.github.narcissujsk.openstackjsk.api.identity.v2.TenantService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.CredentialService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.DomainService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.GroupService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.PolicyService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.ProjectService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.RegionService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.RoleService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.ServiceEndpointService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.TokenService;
-import com.github.narcissujsk.openstackjsk.api.identity.v3.UserService;
+import com.github.narcissujsk.openstackjsk.api.identity.v3.*;
 import com.github.narcissujsk.openstackjsk.api.image.ImageService;
 import com.github.narcissujsk.openstackjsk.api.image.v2.TaskService;
 import com.github.narcissujsk.openstackjsk.api.magnum.MagnumService;
@@ -195,10 +183,7 @@ import com.github.narcissujsk.openstackjsk.openstack.barbican.internal.BarbicanS
 import com.github.narcissujsk.openstackjsk.openstack.barbican.internal.ContainerServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.barbican.internal.SecretServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.BaremetalServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.IronicPortServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.IronicPortgroupServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.NodeServiceImpl;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.internal.*;
 import com.github.narcissujsk.openstackjsk.openstack.compute.internal.ComputeFloatingIPServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.compute.internal.ComputeImageServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.compute.internal.ComputeSecurityGroupServiceImpl;
@@ -244,16 +229,7 @@ import com.github.narcissujsk.openstackjsk.openstack.heat.internal.StackServiceI
 import com.github.narcissujsk.openstackjsk.openstack.heat.internal.TemplateServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.identity.v2.internal.ServiceManagerServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.identity.v2.internal.TenantServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.CredentialServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.DomainServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.GroupServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.PolicyServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.ProjectServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.RegionServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.RoleServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.ServiceEndpointServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.TokenServiceImpl;
-import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.UserServiceImpl;
+import com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.*;
 import com.github.narcissujsk.openstackjsk.openstack.image.internal.ImageServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.image.v2.internal.TaskServiceImpl;
 import com.github.narcissujsk.openstackjsk.openstack.internal.BaseOpenStackService;
@@ -387,7 +363,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(ServiceManagerService.class, ServiceManagerServiceImpl.class);
         bind(com.github.narcissujsk.openstackjsk.api.identity.v2.UserService.class, com.github.narcissujsk.openstackjsk.openstack.identity.v2.internal.UserServiceImpl.class);
         bind(com.github.narcissujsk.openstackjsk.api.identity.v2.RoleService.class, com.github.narcissujsk.openstackjsk.openstack.identity.v2.internal.RoleServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.identity.v3.IdentityService.class, com.github.narcissujsk.openstackjsk.openstack.identity.v3.internal.IdentityServiceImpl.class);
+        bind(IdentityService.class, IdentityServiceImpl.class);
         bind(ServiceEndpointService.class, ServiceEndpointServiceImpl.class);
         bind(CredentialService.class, CredentialServiceImpl.class);
         bind(UserService.class, UserServiceImpl.class);
@@ -418,10 +394,10 @@ public class DefaultAPIProvider implements APIProvider {
         bind(PortService.class, PortServiceImpl.class);
         bind(RouterService.class, RouterServiceImpl.class);
         bind(OctaviaService.class, OctaviaServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.octavia.LoadBalancerV2Service.class, com.github.narcissujsk.openstackjsk.openstack.octavia.internal.LoadBalancerV2ServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.octavia.ListenerV2Service.class, com.github.narcissujsk.openstackjsk.openstack.octavia.internal.ListenerV2ServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.octavia.LbPoolV2Service.class, com.github.narcissujsk.openstackjsk.openstack.octavia.internal.LbPoolV2ServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.octavia.HealthMonitorV2Service.class, com.github.narcissujsk.openstackjsk.openstack.octavia.internal.HealthMonitorV2ServiceImpl.class);
+        bind(LoadBalancerV2Service.class, LoadBalancerV2ServiceImpl.class);
+        bind(ListenerV2Service.class, ListenerV2ServiceImpl.class);
+        bind(LbPoolV2Service.class, LbPoolV2ServiceImpl.class);
+        bind(HealthMonitorV2Service.class, HealthMonitorV2ServiceImpl.class);
         bind(ImageService.class, ImageServiceImpl.class);
         bind(BlockStorageService.class, BlockStorageServiceImpl.class);
         bind(BlockVolumeService.class, BlockVolumeServiceImpl.class);
@@ -508,11 +484,11 @@ public class DefaultAPIProvider implements APIProvider {
         bind(ShareInstanceService.class, ShareInstanceServiceImpl.class);
         bind(ShareTypeService.class, ShareTypeServiceImpl.class);
         bind(SchedulerStatsService.class, SchedulerStatsServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.manila.QuotaSetService.class, com.github.narcissujsk.openstackjsk.openstack.manila.internal.QuotaSetServiceImpl.class);
+        bind(QuotaSetService.class, QuotaSetServiceImpl.class);
         bind(GbpService.class, GbpServiceImpl.class);
         bind(ExternalPolicyService.class, ExternalPolicyServiceImpl.class);
         bind(ExternalSegmentService.class, ExternalSegmentServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.gbp.GroupService.class, com.github.narcissujsk.openstackjsk.openstack.gbp.internal.GroupServiceImpl.class);
+        bind(GroupService.class, GroupServiceImpl.class);
         bind(L2policyService.class, L2policyServiceImpl.class);
         bind(L3policyService.class, L3policyServiceImpl.class);
         bind(NatPoolService.class, NatPoolServiceImpl.class);
@@ -539,7 +515,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(InstanceFlavorService.class, DBFlavorServiceImpl.class);
         bind(DatastoreService.class, DBDatastoreServiceImpl.class);
         bind(DatabaseService.class, DBDatabaseServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.trove.UserService.class, DBUserServiceImpl.class);
+        bind(UserService.class, DBUserServiceImpl.class);
         bind(InstanceService.class, DBInstanceServiceImpl.class);
         bind(SchedulerStatsGetPoolService.class, SchedulerStatsGetPoolServiceImpl.class);
         bind(BarbicanService.class, BarbicanServiceImpl.class);
@@ -550,7 +526,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(VnfService.class, VnfServiceImpl.class);
         bind(VimService.class, VimServiceImpl.class);
         bind(AgentService.class, AgentServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.image.v2.ImageService.class, com.github.narcissujsk.openstackjsk.openstack.image.v2.internal.ImageServiceImpl.class);
+        bind(ImageService.class, ImageServiceImpl.class);
         bind(TaskService.class, TaskServiceImpl.class);
         bind(TaskService.class, TaskServiceImpl.class);
         bind(ServerTagService.class, ServerTagServiceImpl.class);
@@ -562,7 +538,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(WorkflowService.class, WorkflowServiceImpl.class);
         bind(WorkflowDefinitionService.class, WorkflowDefinitionServiceImpl.class);
         bind(DNSService.class, DNSServiceImpl.class);
-        bind(com.github.narcissujsk.openstackjsk.api.dns.v2.ZoneService.class, com.github.narcissujsk.openstackjsk.openstack.dns.v2.internal.ZoneServiceImpl.class);
+        bind(ZoneService.class, ZoneServiceImpl.class);
         bind(RecordsetService.class, RecordsetServiceImpl.class);
         bind(WorkflowService.class, WorkflowServiceImpl.class);
         bind(WorkflowDefinitionService.class, WorkflowDefinitionServiceImpl.class);
@@ -578,7 +554,9 @@ public class DefaultAPIProvider implements APIProvider {
         bind(NodeService.class, NodeServiceImpl.class);
         bind(IronicPortService.class, IronicPortServiceImpl.class);
         bind(IronicPortgroupService.class, IronicPortgroupServiceImpl.class);
-
+        bind(IronicVolumeService.class, IronicVolumeServiceImpl.class);
+        bind(ConnectorService.class, ConnectorServiceImpl.class);
+        bind(TargetService.class, TargetServiceImpl.class);
         LOG.info("DefaultAPIProvider init ");
     }
 

@@ -177,12 +177,12 @@ public class IronicPortgroup implements Portgroup {
         this.ports = ports;
     }
 
-    public static IronicPortgroupConcreteBuilder builder() {
+    public static IronicPortgroupBuilder builder() {
          return new IronicPortgroupConcreteBuilder();
     }
 
     @Override
-    public IronicPortgroupConcreteBuilder toBuilder() {
+    public IronicPortgroupBuilder toBuilder() {
         return new IronicPortgroupConcreteBuilder(this);
     }
 

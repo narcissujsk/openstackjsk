@@ -17,5 +17,7 @@ public interface BaremetalService extends RestService {
 
     IronicPortgroupService portgroups();
 
+    IronicVolumeService volume();
+
 
 }

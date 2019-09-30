@@ -10,15 +10,17 @@ import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBui
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNode;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNodeCreate;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.Target;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.StateTarget;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -130,6 +132,18 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
     }
 
     @Override
+    public List<String> getSupportedBootDevice(String nodeid) {
+        List<String> list = new ArrayList<>();
+        checkNotNull(nodeid);
+        JSONObject re = get(JSONObject.class, uri("/v1/nodes/%s/management/boot_device/supported", nodeid)).execute();
+        JSONArray jsonArray = re.getJSONArray("supported_boot_devices");
+        list.addAll(jsonArray);
+        return list;
+    }
+
+
+
+    @Override
     public NodeCreateBuilder nodeBuilder() {
         return  IronicNodeCreate.builder();
     }
@@ -142,7 +156,7 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
 
 
     protected HttpResponse invokePowerActionWithResponse(String nodeid, NodePowerState powerState)  {
-        Target action = new Target();
+        StateTarget action = new StateTarget();
         action.setTarget(powerState.getTarget());
         HttpResponse response  = put(Void.class, uri("v1/nodes/%s/states/power", nodeid))
                 .entity(action)
@@ -156,7 +170,7 @@ public class NodeServiceImpl extends BaseBaremetalServices implements NodeServic
     }
 
     protected HttpResponse invokeProvisionActionWithResponse(String nodeid, NodeProvisionState nodeProvisionState)  {
-        Target action = new Target();
+        StateTarget action = new StateTarget();
         action.setTarget(nodeProvisionState.getTarget());
         HttpResponse response  = put(Void.class, uri("v1/nodes/%s/states/provision", nodeid))
                 .entity(action)
