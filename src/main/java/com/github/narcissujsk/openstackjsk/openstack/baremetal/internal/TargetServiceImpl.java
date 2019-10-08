@@ -6,6 +6,7 @@ import com.github.narcissujsk.openstackjsk.api.baremetal.TargetService;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Connector;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Target;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeConnector;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeTarget;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
@@ -30,18 +31,25 @@ public class TargetServiceImpl extends BaseBaremetalServices  implements TargetS
 
     @Override
     public List<? extends Target> list(Map<String, String> filteringParams) {
-        return null;
+        Invocation<VolumeTargets> invocation = get(VolumeTargets.class, "/v1/volume/targets");
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                invocation = invocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return invocation.execute().getList();
     }
 
     @Override
     public Target get(String uuid) {
-        return null;
+        checkNotNull(uuid);
+        return get(VolumeTarget.class, uri("/v1/volume/targets/%s", uuid)).execute();
     }
 
     @Override
     public Target create(Target target) {
         checkNotNull(target);
-        return post(VolumeTarget.class, uri("/v1/volume/connectors"))
+        return post(VolumeTarget.class, uri("/v1/volume/targets"))
                 .entity(target)
                 .execute();
     }

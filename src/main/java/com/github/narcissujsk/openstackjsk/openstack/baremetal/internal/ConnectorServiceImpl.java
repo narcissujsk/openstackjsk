@@ -6,6 +6,7 @@ import com.github.narcissujsk.openstackjsk.model.baremetal.Connector;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeConnector;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeTarget;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
@@ -28,12 +29,19 @@ public class ConnectorServiceImpl extends BaseBaremetalServices  implements Conn
 
     @Override
     public List<? extends Connector> list(Map<String, String> filteringParams) {
-        return null;
+        Invocation<VolumeConnectors> invocation = get(VolumeConnectors.class, "/v1/volume/connectors");
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                invocation = invocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+        return invocation.execute().getList();
     }
 
     @Override
     public Connector get(String uuid) {
-        return null;
+        checkNotNull(uuid);
+        return get(VolumeConnector.class, uri("/v1/volume/connectors/%s", uuid)).execute();
     }
 
     @Override

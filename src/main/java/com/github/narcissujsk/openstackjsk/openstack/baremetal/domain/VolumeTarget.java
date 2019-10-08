@@ -144,7 +144,8 @@ public class VolumeTarget implements Target {
 
         @Override
         public TargetBuilder bootIndex(Integer bootIndex) {
-            return null;
+            m.bootIndex=bootIndex;
+            return this;
         }
 
         @Override
