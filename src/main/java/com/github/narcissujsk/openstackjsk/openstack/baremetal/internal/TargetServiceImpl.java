@@ -9,8 +9,10 @@ import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeConnector;
 import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeTarget;
+import com.github.narcissujsk.openstackjsk.openstack.common.ListEntity;
 import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
+import com.github.narcissujsk.openstackjsk.openstack.compute.functions.ToActionResponseFunction;
 
 import java.util.List;
 import java.util.Map;
@@ -56,12 +58,17 @@ public class TargetServiceImpl extends BaseBaremetalServices  implements TargetS
 
     @Override
     public Target update(String uuid, List<OpenstackUpdate> update) {
-        return null;
+        checkNotNull(update);
+        return  patch(VolumeTarget.class, uri("/v1/volume/targets/%s", uuid)).entity(new ListEntity<OpenstackUpdate>(update)).execute();
+
     }
 
     @Override
     public ActionResponse delete(String uuid) {
-        return null;
+        checkNotNull(uuid);
+        return ToActionResponseFunction.INSTANCE.apply(
+                delete(Void.class, uri("/v1/volume/targets/%s", uuid)).executeWithResponse()
+        );
     }
 
     public static class VolumeTargets extends ListResult<VolumeTarget> {
