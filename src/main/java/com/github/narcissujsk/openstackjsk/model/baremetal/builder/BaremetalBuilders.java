@@ -8,5 +8,6 @@ public interface BaremetalBuilders {
 
      IronicPortgroupBuilder portgroup();
 
-
+    ConnectorBuilder connector();
+    TargetBuilder target();
 }

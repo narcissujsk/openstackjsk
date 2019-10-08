@@ -1,13 +1,8 @@
 package com.github.narcissujsk.openstackjsk.openstack.baremetal.builder;
 
-import com.github.narcissujsk.openstackjsk.model.baremetal.builder.BaremetalBuilders;
-import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortBuilder;
-import com.github.narcissujsk.openstackjsk.model.baremetal.builder.IronicPortgroupBuilder;
-import com.github.narcissujsk.openstackjsk.model.baremetal.builder.NodeCreateBuilder;
+import com.github.narcissujsk.openstackjsk.model.baremetal.builder.*;
 import com.github.narcissujsk.openstackjsk.model.compute.builder.ComputeBuilders;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicNodeCreate;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPort;
-import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.IronicPortgroup;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.*;
 
 
 public class IronicBuilders implements BaremetalBuilders {
@@ -28,5 +23,15 @@ public class IronicBuilders implements BaremetalBuilders {
     @Override
     public IronicPortgroupBuilder portgroup() {
         return IronicPortgroup.builder();
+    }
+
+    @Override
+    public ConnectorBuilder connector() {
+        return VolumeConnector.builder();
+    }
+
+    @Override
+    public TargetBuilder target() {
+        return VolumeTarget.builder();
     }
 }

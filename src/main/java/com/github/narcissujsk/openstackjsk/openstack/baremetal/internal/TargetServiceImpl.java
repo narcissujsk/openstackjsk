@@ -1,23 +1,31 @@
 package com.github.narcissujsk.openstackjsk.openstack.baremetal.internal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.narcissujsk.openstackjsk.api.baremetal.ConnectorService;
 import com.github.narcissujsk.openstackjsk.api.baremetal.TargetService;
+import com.github.narcissujsk.openstackjsk.model.baremetal.Connector;
 import com.github.narcissujsk.openstackjsk.model.baremetal.Target;
 import com.github.narcissujsk.openstackjsk.model.common.ActionResponse;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeConnector;
+import com.github.narcissujsk.openstackjsk.openstack.baremetal.domain.VolumeTarget;
+import com.github.narcissujsk.openstackjsk.openstack.common.ListResult;
 import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 
 import java.util.List;
 import java.util.Map;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * @program: openstackjsk
  * @description:
  * @author: jiangsk@inspur.com
- * @create: 2019-09-30 15:41
+ * @create: 2019-09-30 15:40
  **/
-public class TargetServiceImpl  extends BaseBaremetalServices implements TargetService {
+public class TargetServiceImpl extends BaseBaremetalServices  implements TargetService {
     @Override
     public List<? extends Target> list() {
-        return null;
+        return get(VolumeTargets.class, uri("/v1/volume/targets")).execute().getList();
     }
 
     @Override
@@ -32,7 +40,10 @@ public class TargetServiceImpl  extends BaseBaremetalServices implements TargetS
 
     @Override
     public Target create(Target target) {
-        return null;
+        checkNotNull(target);
+        return post(VolumeTarget.class, uri("/v1/volume/connectors"))
+                .entity(target)
+                .execute();
     }
 
     @Override
@@ -43,5 +54,18 @@ public class TargetServiceImpl  extends BaseBaremetalServices implements TargetS
     @Override
     public ActionResponse delete(String uuid) {
         return null;
+    }
+
+    public static class VolumeTargets extends ListResult<VolumeTarget> {
+
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty("targets")
+        private List<VolumeTarget> targets;
+
+        @Override
+        public List<VolumeTarget> value() {
+            return targets;
+        }
     }
 }

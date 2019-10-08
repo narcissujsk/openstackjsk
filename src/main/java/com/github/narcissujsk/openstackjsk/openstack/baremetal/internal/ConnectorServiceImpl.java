@@ -12,6 +12,8 @@ import com.github.narcissujsk.openstackjsk.openstack.common.OpenstackUpdate;
 import java.util.List;
 import java.util.Map;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * @program: openstackjsk
  * @description:
@@ -36,7 +38,10 @@ public class ConnectorServiceImpl extends BaseBaremetalServices  implements Conn
 
     @Override
     public Connector create(Connector connector) {
-        return null;
+        checkNotNull(connector);
+        return post(VolumeConnector.class, uri("/v1/volume/connectors"))
+                .entity(connector)
+                .execute();
     }
 
     @Override
